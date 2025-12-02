@@ -3,6 +3,7 @@ import Logo from "../assets/images/logo.svg";
 import IconClose from "../assets/images/icon-menu-close.svg";
 import IconOpen from "../assets/images/icon-menu.svg";
 import Navbaritems from "./Navbaritems.astro";
+
 ---
 
 <nav class="flex justify-between items-center mb-6">
@@ -11,30 +12,55 @@ import Navbaritems from "./Navbaritems.astro";
   </a>
   <Navbaritems isHorizontal={true} />
   <IconOpen id="open-btn" class="cursor-pointer lg:hidden" />
-  <div id="menu-modal" class="bg-black/50 fixed inset-0 hidden">
+  <div id="menu-modal" class="bg-black/50 fixed inset-0 z-50">
     <div class="bg-Off-white absolute right-0 h-screen flex flex-col items-end">
       <IconClose id="close-btn" class="cursor-pointer" />
       <Navbaritems />
     </div>
   </div>
-</nav>
-<script>
+<script is:inline>
+  // Esta función se encarga de adjuntar los listeners y configurar el estado inicial.
+  function setupMenu() {
+    // 1. Obtiene las referencias
     const closeBtn = document.getElementById("close-btn");
     const modal = document.getElementById("menu-modal");
     const openBtn = document.getElementById("open-btn");
-    const menuItems = document.querySelectorAll("a");
+
+    if (!modal || !openBtn || !closeBtn) {
+        // En lugar de hacer 'return' aquí, vamos a dejar que el script continúe si puede.
+        // Pero si faltan los elementos principales, no podemos hacer nada.
+        return;
+    }
     
-    closeBtn?.addEventListener('click',() => {
-        modal?.classList.add("hidden");
-    });
+    // 2. Definición del Toggle (usando estilo en línea para anular cualquier CSS)
+    const toggleDisplay = () => {
+        // Alterna entre 'flex' (abierto) y 'none' (cerrado)
+        modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+    };
+    
+    // 3. Establece el estado inicial: Asegura que esté cerrado
+    // Esto es crucial para que 'flex' no quede de forma persistente.
+    modal.style.display = 'none'; 
+    
+    // 4. Adjunta Listeners a los botones
+    // Nota: Si ya existían listeners, estos se añadirán. Esto es aceptable con 'astro:page-load'.
+    openBtn.onclick = toggleDisplay;
+    closeBtn.onclick = toggleDisplay;
 
-    openBtn?.addEventListener('click',() => {
-        modal?.classList.remove("hidden");
-    })
-
-    menuItems.forEach((item : HTMLAnchorElement) => {
-        item.addEventListener('click', () => {
-        modal?.classList.add("hidden");
-        });
+    // 5. Cierre al hacer clic en un enlace
+    modal.querySelectorAll("a").forEach((item) => {
+        item.onclick = () => {
+            modal.style.display = 'none';
+        };
     });
+  }
+
+  // Ejecuta la configuración cuando la página se carga (primera vez)
+  document.addEventListener('DOMContentLoaded', setupMenu);
+
+  // Ejecuta la configuración cada vez que Astro navega internamente
+  document.addEventListener('astro:page-load', setupMenu);
 </script>
+</nav>
+
+

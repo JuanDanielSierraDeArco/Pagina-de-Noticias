@@ -6,7 +6,7 @@ interface NavItem {
  export const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "New", href: "/new" },
-  { name: "Populare", href: "/popular" },
+  { name: "Popular", href: "/popular" },
   { name: "Trending", href: "/trending" },
   { name: "Categories", href: "/categories" },
 ];
@@ -24,7 +24,7 @@ const currentPathName = Astro.url.pathname
     navItems.map((item: NavItem) => (
       <li>
         <a
-          class={`text-lg cursor-pointer hover:text-Soft-orange ${currentPathName === item.href && 'text-Soft-orange'}`}
+          class={`nav-link text-lg cursor-pointer hover:text-Soft-orange ${currentPathName === item.href && 'text-Soft-orange'}`}
           href={item.href}
         >
           {item.name}

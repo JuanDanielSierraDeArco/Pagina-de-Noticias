@@ -5,7 +5,7 @@ import Newpopular from '../components/Newpopular.astro';
 ---
 
 <Layout>
-    <section class="xl:grid xl:grid-cols-2 xl:gap-6">
+    <section class="xl:grid xl:grid-cols-2 xl:gap-6 z-10">
         {
             articles.map(elemento => <Newpopular {...elemento}/>)
         }
