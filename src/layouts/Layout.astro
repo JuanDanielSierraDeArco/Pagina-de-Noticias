@@ -1,0 +1,22 @@
+---
+import "../styles/global.css"
+import Navbar from "../components/Navbar.astro"
+import ClientRouter from "astro/components/ClientRouter.astro"
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title> 
+		<ClientRouter />
+	</head>
+	<body class="flex flex-col items-center font-Inter">
+        <main class="my-8 p-6 xl:w-278">
+        <Navbar/>
+        <slot />
+        </main>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { articles } from '../common/populares';
+import Newpopular from '../components/Newpopular.astro';
+---
+
+<Layout>
+    <section class="xl:grid xl:grid-cols-2 xl:gap-6">
+        {
+            articles.map(elemento => <Newpopular {...elemento}/>)
+        }
+    </section>
+    <div class="flex justify-end mt-6 ">
+        <a id="go-back" class="hover:text-Soft-orange" href="/">Atras</a>
+    </div>
+</Layout>

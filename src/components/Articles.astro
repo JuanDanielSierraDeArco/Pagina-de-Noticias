@@ -1,0 +1,10 @@
+---
+import { articles } from '../common/populares';
+import Newpopular from '../components/Newpopular.astro';
+
+---
+<section class="flex flex-col lg:flex-row">
+    {
+        articles.slice(0, 3).map(elemento => <Newpopular {...elemento}/>)
+    }
+</section>

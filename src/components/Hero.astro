@@ -1,0 +1,35 @@
+---
+import mobileImg from "../assets/images/image-web-3-mobile.jpg";
+import { Image } from "astro:assets";
+import desktopimg from "../assets/images/image-web-3-desktop.jpg";
+
+interface Props {
+  styles?: string;
+}
+
+const { styles } = Astro.props;
+---
+
+<header class={`mb-16 ${styles}`}>
+  <div class="mb-6 xl:mb-10">
+      <Image class="mb-6 sm:hidden" src={mobileImg} alt="image-web-3-mobile" />
+      <Image
+        class="mb-6 hidden sm:block"
+        src={desktopimg}
+        alt="image-web-3-desktop"
+      />
+  </div>
+  <div class="flex flex-col items-start xl:flex-row">
+    <h1 class="text-[2.5rem]/10 font-extrabold mb-6 xl:text-[3.5rem]/14 xl:flex-1 xl:mb-0">
+      The Bright Future of Web 3.0?
+    </h1>
+    <div class=" xl:flex-1">
+      <p class="text-Dark-grayish-blue text-[0.9375rem] mb-6">
+        We dive into the next evolution of the web that claims to put the power of
+        the platforms back into the hands of the people. But is it really
+        fulfilling its promise?
+      </p>
+      <button class="bg-Soft-red uppercase px-8 py-3 font-bold cursor-pointer hover:bg-Soft-red/80">Read more</button>
+    </div>
+  </div>
+</header>

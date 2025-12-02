@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { articles } from "../../common/populares";
+import Image from "astro/components/Image.astro";
+
+export const getStaticPaths = (() => {
+    return articles.map(elemento =>({params: {slug: elemento.slug}})) ;
+}) satisfies GetStaticPaths;
+
+const {slug} = Astro.params;
+const currentAticulesPopulares = articles.filter(element => element.slug === slug)[0];
+---
+<Layout>
+    <h1 transition:name={ currentAticulesPopulares.title } class="font-extrabold mb-4">{ currentAticulesPopulares.title }</h1>
+    <section class="flex flex-col xl:flex-row gap-3">
+        <Image class="w-[400px]" src={currentAticulesPopulares.img} alt={currentAticulesPopulares.title}/>
+    <div class="text-left">
+        <p class="font-bold text-Grayish-blue italic mb-6">{ currentAticulesPopulares.description }</p>
+        <p>{ currentAticulesPopulares.content }</p>
+    </div>
+    </section>
+    <div class="flex justify-end mt-6 ">
+        <a id="go-back" class="hover:text-Soft-orange" href="/">Atras</a>
+    </div>
+</Layout>
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const backbtn = document.querySelector('#go-back');
+        backbtn?.addEventListener('click', () => {
+        history.back()
+        })
+    })
+</script>

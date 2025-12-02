@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { articule } from '../common/articles';
+import NewArticule from '../components/NewArticule.astro';
+---
+
+<Layout>
+    <section class="xl:grid xl:grid-cols-2 xl:gap-6">
+        {
+            articule.map(elemento => <NewArticule {...elemento}/>)
+        }
+    </section>
+    <div class="flex justify-end mt-6 ">
+        <a id="go-back" class="hover:text-Soft-orange" href="/">Atras</a>
+    </div>
+</Layout>

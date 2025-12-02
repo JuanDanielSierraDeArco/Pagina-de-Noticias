@@ -1,0 +1,35 @@
+---
+interface NavItem {
+  name: string;
+  href: string;
+}
+ export const navItems: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "New", href: "/new" },
+  { name: "Populare", href: "/popular" },
+  { name: "Trending", href: "/trending" },
+  { name: "Categories", href: "/categories" },
+];
+
+interface props {
+    isHorizontal?: Boolean;
+}
+
+const {isHorizontal = false} = Astro.props
+const currentPathName = Astro.url.pathname
+---
+
+<ul class={`flex flex-col gap-6 pl-5 py-7 ${isHorizontal ? 'flex-row mt-0 hidden lg:flex' : 'flex-col mt-[88px] w-64'}`}>
+  {
+    navItems.map((item: NavItem) => (
+      <li>
+        <a
+          class={`text-lg cursor-pointer hover:text-Soft-orange ${currentPathName === item.href && 'text-Soft-orange'}`}
+          href={item.href}
+        >
+          {item.name}
+        </a>
+      </li>
+    ))
+  }
+</ul>

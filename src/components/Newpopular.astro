@@ -1,0 +1,24 @@
+---
+import Image from 'astro/components/Image.astro';
+
+interface Article {
+    number: string;
+    title: string;
+    description: string;
+    img: ImageMetadata;
+}
+
+const {number, title, description, img, slug} = Astro.props
+---
+<section class="flex flex-col lg:flex-row">
+    {
+            <article class="flex mb-8 gap-8">
+                <Image class="w-[100px]" src={img} alt={title}/>
+                <div>
+                    <p class="text-[2rem] font-bold text-Soft-orange">{ number }</p>
+                    <a  transition:name= { title } class="font-extrabold text-lg cursor-pointer hover:text-Soft-red" href={`/populares/${slug}`}>{ title }</a>
+                    <p class="text-Dark-grayish-blue text-[0.9375rem]">{ description }</p>
+                </div>
+            </article>
+    }
+</section>

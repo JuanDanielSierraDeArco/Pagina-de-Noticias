@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400 700 800;
+  font-display: swap;
+  src: url("../assets/fonts/Inter-VariableFont_slnt_wght.ttf") format("woff2");
+}
+
+@theme {
+    --color-Soft-orange: hsl(35, 77%, 62%);
+    --color-Soft-red: hsl(5, 85%, 63%);
+    --color-Off-white: hsl(36, 100%, 99%);
+    --color-Grayish-blue: hsl(233, 8%, 79%);
+    --color-Dark-grayish-blue: hsl(236, 13%, 42%);
+    --color-Very-dark-blue: hsl(240, 100%, 5%);
+
+    --font-Inter: Inter;
+
+
+}
